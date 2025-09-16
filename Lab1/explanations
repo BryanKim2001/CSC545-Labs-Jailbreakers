@@ -1,0 +1,3 @@
+The /teleop_turtle node publishes velocity commands on the /turtle1/cmd_vel topic, which the /turtlesim node subscribes to. This shows the flow of data: key inputs are converted to velocity messages by the teleop node and sent to the turtlesim node, which moves the turtle accordingly.
+
+rosservice is used to call services, which are request/response style operations in ROS. rostopic allows you to view, publish, and subscribe to topics, which are continuous data streams. rosparam manages parameters on the parameter server, such as configuration values. rosbag is used to record and replay topic data, which is useful for debugging or testing without live inputs
