@@ -1,0 +1,31 @@
+(base) chou24@chou24-framework16:~$ sudo docker exec -it my_ros /bin/bash
+[sudo] password for chou24: 
+root@chou24-framework16:/# rosrun turtlesim turtle_teleop_key
+Reading from keyboard
+---------------------------
+Use arrow keys to move the turtle. 'q' to quit.
+root@chou24-framework16:/# cd /tmp/bagfiles/
+root@chou24-framework16:/tmp/bagfiles# rosbag info baggy.bag
+path:        baggy.bag
+version:     2.0
+duration:    50.6s
+start:       Sep 15 2025 19:26:35.34 (1757989595.34)
+end:         Sep 15 2025 19:27:25.89 (1757989645.89)
+size:        438.7 KB
+messages:    6307
+compression: none [1/1 chunks]
+types:       geometry_msgs/Twist [9f195f881246fdfa2798d1d3eebca84a]
+             rosgraph_msgs/Log   [acffd30cd6b6de30f120938c17c593fb]
+             turtlesim/Color     [353891e354491c51aabe32df673fb446]
+             turtlesim/Pose      [863b248d5016ca62ea2e895ae5265cf9]
+topics:      /rosout                    3 msgs    : rosgraph_msgs/Log  
+             /turtle1/cmd_vel          12 msgs    : geometry_msgs/Twist
+             /turtle1/color_sensor   3146 msgs    : turtlesim/Color    
+             /turtle1/pose           3146 msgs    : turtlesim/Pose
+root@chou24-framework16:/tmp/bagfiles# rosbag play baggy.bag
+[INFO] [1757989703.926838155]: Opening baggy.bag
+
+Waiting 0.2 seconds after advertising topics... done.
+
+Hit space to toggle paused, or 's' to step.
+ [DELAYED]  Bag Time: 1757989595.335873   Duration: 0.000000 / 50.558383   Delay: [RUNNING]  Bag Time: 1757989595.335873   Duration: 0.000000 / 50.558383          [RUNNING]  Bag Time: 1757989595.335873   Duration: 0.000000 / 50.558383          [RUNNING]  Bag Time: 1757989595.336861   Duration: 0.000989 / 50.558383          [RUNNING]  Bag Time: 1757989595.436984   Duration: 0.101111 / 50.558383          [RUNNING]  Bag Time: 1757989595.537292   Duration: 0.201419 / 50.558383          [RUNNING]  Bag Time: 1757989595.574643   Duration: 0.238771 / 50.558383          [RUNNING]  Bag Time: 1757989595.591755   Duration: 0.255882 / 50.558383          [RUNNING]  Bag Time: 1757989595.607534   Duration: 0.271662 / 50.558383          [RUNNING]  Bag Time: 1757989595.622523   Duration: 0.286650 / 50.558383          [RUNNING]  Bag Time: 1757989595.639266   Duration: 0.303394 / 50.558383          [RUNNING]  Bag Time: 1757989595.655308   Duration: 0.319435 / 50.558383          [RUNNING]  Bag Time: 1757989595.670965   Duration: 0.335093 / 50.558383          [RUNNING]  Bag Time: 1757989595.687663   Duration: 0.351790 / 50.558383 

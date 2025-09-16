@@ -1,0 +1,260 @@
+(base) chou24@chou24-framework16:~$ sudo docker exec -it my_ros /bin/bash
+[sudo] password for chou24: 
+root@chou24-framework16:/# rostopic -v
+rostopic is a command-line tool for printing information about ROS Topics.
+
+Commands:
+	rostopic bw	display bandwidth used by topic
+	rostopic delay	display delay of topic from timestamp in header
+	rostopic echo	print messages to screen
+	rostopic find	find topics by type
+	rostopic hz	display publishing rate of topic    
+	rostopic info	print information about active topic
+	rostopic list	list active topics
+	rostopic pub	publish data to topic
+	rostopic type	print topic or field type
+
+Type rostopic <command> -h for more detailed usage, e.g. 'rostopic echo -h'
+
+root@chou24-framework16:/# apt update && apt install -y ros-noetic-rqt-graph
+Hit:1 http://snapshots.ros.org/noetic/final/ubuntu focal InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease                          
+Hit:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease                  
+Hit:4 http://security.ubuntu.com/ubuntu focal-security InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+15 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libpyside2-dev libpyside2-py3-5.14 libqt5svg5 libshiboken2-dev
+  libshiboken2-py3-5.14 pyqt5-dev python3-pydot python3-pyqt5
+  python3-pyqt5.qtsvg python3-pyside2.qtcore python3-pyside2.qtgui
+  python3-pyside2.qtsvg python3-pyside2.qtwidgets python3-sip-dev
+  ros-noetic-python-qt-binding ros-noetic-qt-dotgraph ros-noetic-qt-gui
+  ros-noetic-rqt-gui ros-noetic-rqt-gui-py shiboken2 sip-dev tango-icon-theme
+Suggested packages:
+  python3-pyqt5-dbg python-pyside2-doc python-sip-doc gnome-icon-theme
+  kdelibs-data
+The following NEW packages will be installed:
+  libpyside2-dev libpyside2-py3-5.14 libqt5svg5 libshiboken2-dev
+  libshiboken2-py3-5.14 pyqt5-dev python3-pydot python3-pyqt5
+  python3-pyqt5.qtsvg python3-pyside2.qtcore python3-pyside2.qtgui
+  python3-pyside2.qtsvg python3-pyside2.qtwidgets python3-sip-dev
+  ros-noetic-python-qt-binding ros-noetic-qt-dotgraph ros-noetic-qt-gui
+  ros-noetic-rqt-graph ros-noetic-rqt-gui ros-noetic-rqt-gui-py shiboken2
+  sip-dev tango-icon-theme
+0 upgraded, 23 newly installed, 0 to remove and 15 not upgraded.
+Need to get 8919 kB of archives.
+After this operation, 58.2 MB of additional disk space will be used.
+Get:1 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-python-qt-binding amd64 0.4.6-1focal.20250426.201332 [19.1 kB]
+Get:2 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-qt-dotgraph amd64 0.4.5-1focal.20250426.202029 [24.2 kB]
+Get:3 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-qt-gui amd64 0.4.5-1focal.20250426.202313 [98.2 kB]
+Get:4 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-rqt-gui amd64 0.5.5-1focal.20250519.232427 [94.7 kB]
+Get:5 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-rqt-gui-py amd64 0.5.5-1focal.20250519.233238 [10.0 kB]
+Get:6 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-rqt-graph amd64 0.4.16-1focal.20250519.235907 [33.0 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal/universe amd64 libqt5svg5 amd64 5.12.8-0ubuntu1 [131 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal/universe amd64 libshiboken2-py3-5.14 amd64 5.14.0-1~exp1ubuntu5 [151 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal/universe amd64 libpyside2-py3-5.14 amd64 5.14.0-1~exp1ubuntu5 [74.0 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/universe amd64 libpyside2-dev amd64 5.14.0-1~exp1ubuntu5 [154 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal/universe amd64 shiboken2 amd64 5.14.0-1~exp1ubuntu5 [588 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal/universe amd64 libshiboken2-dev amd64 5.14.0-1~exp1ubuntu5 [32.3 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal/universe amd64 sip-dev amd64 4.19.21+dfsg-1build1 [168 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-sip-dev amd64 4.19.21+dfsg-1build1 [22.3 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal/universe amd64 pyqt5-dev all 5.14.1+dfsg-3build1 [309 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pydot all 1.4.1-3 [21.3 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pyqt5 amd64 5.14.1+dfsg-3build1 [2318 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pyqt5.qtsvg amd64 5.14.1+dfsg-3build1 [26.9 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pyside2.qtcore amd64 5.14.0-1~exp1ubuntu5 [887 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pyside2.qtgui amd64 5.14.0-1~exp1ubuntu5 [995 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pyside2.qtwidgets amd64 5.14.0-1~exp1ubuntu5 [1554 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal/universe amd64 python3-pyside2.qtsvg amd64 5.14.0-1~exp1ubuntu5 [47.9 kB]
+Get:23 http://archive.ubuntu.com/ubuntu focal/universe amd64 tango-icon-theme all 0.8.90-7 [1161 kB]
+Fetched 8919 kB in 2s (4121 kB/s)           
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libqt5svg5:amd64.
+(Reading database ... 87459 files and directories currently installed.)
+Preparing to unpack .../00-libqt5svg5_5.12.8-0ubuntu1_amd64.deb ...
+Unpacking libqt5svg5:amd64 (5.12.8-0ubuntu1) ...
+Selecting previously unselected package libshiboken2-py3-5.14.
+Preparing to unpack .../01-libshiboken2-py3-5.14_5.14.0-1~exp1ubuntu5_amd64.deb .
+..
+Unpacking libshiboken2-py3-5.14 (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package libpyside2-py3-5.14.
+Preparing to unpack .../02-libpyside2-py3-5.14_5.14.0-1~exp1ubuntu5_amd64.deb ...
+Unpacking libpyside2-py3-5.14 (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package libpyside2-dev.
+Preparing to unpack .../03-libpyside2-dev_5.14.0-1~exp1ubuntu5_amd64.deb ...
+Unpacking libpyside2-dev (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package shiboken2.
+Preparing to unpack .../04-shiboken2_5.14.0-1~exp1ubuntu5_amd64.deb ...
+Unpacking shiboken2 (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package libshiboken2-dev.
+Preparing to unpack .../05-libshiboken2-dev_5.14.0-1~exp1ubuntu5_amd64.deb ...
+Unpacking libshiboken2-dev (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package sip-dev.
+Preparing to unpack .../06-sip-dev_4.19.21+dfsg-1build1_amd64.deb ...
+Unpacking sip-dev (4.19.21+dfsg-1build1) ...
+Selecting previously unselected package python3-sip-dev.
+Preparing to unpack .../07-python3-sip-dev_4.19.21+dfsg-1build1_amd64.deb ...
+Unpacking python3-sip-dev (4.19.21+dfsg-1build1) ...
+Selecting previously unselected package pyqt5-dev.
+Preparing to unpack .../08-pyqt5-dev_5.14.1+dfsg-3build1_all.deb ...
+Unpacking pyqt5-dev (5.14.1+dfsg-3build1) ...
+Selecting previously unselected package python3-pydot.
+Preparing to unpack .../09-python3-pydot_1.4.1-3_all.deb ...
+Unpacking python3-pydot (1.4.1-3) ...
+Selecting previously unselected package python3-pyqt5.
+Preparing to unpack .../10-python3-pyqt5_5.14.1+dfsg-3build1_amd64.deb ...
+Unpacking python3-pyqt5 (5.14.1+dfsg-3build1) ...
+Selecting previously unselected package python3-pyqt5.qtsvg.
+Preparing to unpack .../11-python3-pyqt5.qtsvg_5.14.1+dfsg-3build1_amd64.deb ...
+Unpacking python3-pyqt5.qtsvg (5.14.1+dfsg-3build1) ...
+Selecting previously unselected package python3-pyside2.qtcore.
+Preparing to unpack .../12-python3-pyside2.qtcore_5.14.0-1~exp1ubuntu5_amd64.deb 
+...
+Unpacking python3-pyside2.qtcore (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package python3-pyside2.qtgui.
+Preparing to unpack .../13-python3-pyside2.qtgui_5.14.0-1~exp1ubuntu5_amd64.deb .
+..
+Unpacking python3-pyside2.qtgui (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package python3-pyside2.qtwidgets.
+Preparing to unpack .../14-python3-pyside2.qtwidgets_5.14.0-1~exp1ubuntu5_amd64.d
+eb ...
+Unpacking python3-pyside2.qtwidgets (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package python3-pyside2.qtsvg.
+Preparing to unpack .../15-python3-pyside2.qtsvg_5.14.0-1~exp1ubuntu5_amd64.deb .
+..
+Unpacking python3-pyside2.qtsvg (5.14.0-1~exp1ubuntu5) ...
+Selecting previously unselected package ros-noetic-python-qt-binding.
+Preparing to unpack .../16-ros-noetic-python-qt-binding_0.4.6-1focal.20250426.201
+332_amd64.deb ...
+Unpacking ros-noetic-python-qt-binding (0.4.6-1focal.20250426.201332) ...
+Selecting previously unselected package ros-noetic-qt-dotgraph.
+Preparing to unpack .../17-ros-noetic-qt-dotgraph_0.4.5-1focal.20250426.202029_am
+d64.deb ...
+Unpacking ros-noetic-qt-dotgraph (0.4.5-1focal.20250426.202029) ...
+Selecting previously unselected package tango-icon-theme.
+Preparing to unpack .../18-tango-icon-theme_0.8.90-7_all.deb ...
+Unpacking tango-icon-theme (0.8.90-7) ...
+Selecting previously unselected package ros-noetic-qt-gui.
+Preparing to unpack .../19-ros-noetic-qt-gui_0.4.5-1focal.20250426.202313_amd64.d
+eb ...
+Unpacking ros-noetic-qt-gui (0.4.5-1focal.20250426.202313) ...
+Selecting previously unselected package ros-noetic-rqt-gui.
+Preparing to unpack .../20-ros-noetic-rqt-gui_0.5.5-1focal.20250519.232427_amd64.
+deb ...
+Unpacking ros-noetic-rqt-gui (0.5.5-1focal.20250519.232427) ...
+Selecting previously unselected package ros-noetic-rqt-gui-py.
+Preparing to unpack .../21-ros-noetic-rqt-gui-py_0.5.5-1focal.20250519.233238_amd
+64.deb ...
+Unpacking ros-noetic-rqt-gui-py (0.5.5-1focal.20250519.233238) ...
+Selecting previously unselected package ros-noetic-rqt-graph.
+Preparing to unpack .../22-ros-noetic-rqt-graph_0.4.16-1focal.20250519.235907_amd
+64.deb ...
+Unpacking ros-noetic-rqt-graph (0.4.16-1focal.20250519.235907) ...
+Setting up libshiboken2-py3-5.14 (5.14.0-1~exp1ubuntu5) ...
+Setting up python3-pydot (1.4.1-3) ...
+Setting up libqt5svg5:amd64 (5.12.8-0ubuntu1) ...
+Setting up libpyside2-py3-5.14 (5.14.0-1~exp1ubuntu5) ...
+Setting up libpyside2-dev (5.14.0-1~exp1ubuntu5) ...
+Setting up sip-dev (4.19.21+dfsg-1build1) ...
+Setting up python3-pyside2.qtcore (5.14.0-1~exp1ubuntu5) ...
+Setting up shiboken2 (5.14.0-1~exp1ubuntu5) ...
+Setting up python3-pyqt5 (5.14.1+dfsg-3build1) ...
+Setting up tango-icon-theme (0.8.90-7) ...
+Setting up python3-pyqt5.qtsvg (5.14.1+dfsg-3build1) ...
+Setting up python3-pyside2.qtgui (5.14.0-1~exp1ubuntu5) ...
+Setting up python3-sip-dev (4.19.21+dfsg-1build1) ...
+Setting up python3-pyside2.qtwidgets (5.14.0-1~exp1ubuntu5) ...
+Setting up pyqt5-dev (5.14.1+dfsg-3build1) ...
+Setting up libshiboken2-dev (5.14.0-1~exp1ubuntu5) ...
+Setting up python3-pyside2.qtsvg (5.14.0-1~exp1ubuntu5) ...
+Setting up ros-noetic-python-qt-binding (0.4.6-1focal.20250426.201332) ...
+Setting up ros-noetic-qt-dotgraph (0.4.5-1focal.20250426.202029) ...
+Setting up ros-noetic-qt-gui (0.4.5-1focal.20250426.202313) ...
+Setting up ros-noetic-rqt-gui (0.5.5-1focal.20250519.232427) ...
+Setting up ros-noetic-rqt-gui-py (0.5.5-1focal.20250519.233238) ...
+Setting up ros-noetic-rqt-graph (0.4.16-1focal.20250519.235907) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.17) ...
+root@chou24-framework16:/# rqt_graph
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+libGL error: MESA-LOADER: failed to retrieve device information
+libGL error: MESA-LOADER: failed to open amdgpu: /usr/lib/dri/amdgpu_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: amdgpu
+rostopic list
+^C
+root@chou24-framework16:/# 
+root@chou24-framework16:/# ^C
+root@chou24-framework16:/# 
+root@chou24-framework16:/# rostopic list
+/rosout
+/rosout_agg
+/turtle1/cmd_vel
+/turtle1/color_sensor
+/turtle1/pose
+root@chou24-framework16:/# 
+root@chou24-framework16:/# rostopic info /turtle1/cmd_vel
+Type: geometry_msgs/Twist
+
+Publishers: 
+ * /teleop_turtle (http://chou24-framework16:33889/)
+
+Subscribers: 
+ * /turtlesim (http://chou24-framework16:38373/)
+
+
+root@chou24-framework16:/# rostopic info /turtle1/color_sensor 
+Type: turtlesim/Color
+
+Publishers: 
+ * /turtlesim (http://chou24-framework16:38373/)
+
+Subscribers: None
+
+
+root@chou24-framework16:/# rostopic info /turtle1/pose 
+Type: turtlesim/Pose
+
+Publishers: 
+ * /turtlesim (http://chou24-framework16:38373/)
+
+Subscribers: None
+
+
+root@chou24-framework16:/# rostopic info /rosout
+Type: rosgraph_msgs/Log
+
+Publishers: 
+ * /turtlesim (http://chou24-framework16:38373/)
+ * /teleop_turtle (http://chou24-framework16:33889/)
+
+Subscribers: 
+ * /rosout (http://chou24-framework16:32913/)
+
+
+root@chou24-framework16:/# rostopic info /rosout_agg 
+Type: rosgraph_msgs/Log
+
+Publishers: 
+ * /rosout (http://chou24-framework16:32913/)
+
+Subscribers: None
+
+
+root@chou24-framework16:/# ^C
+root@chou24-framework16:/# mkdir /tmp/bagfiles # gets cleared on reboot
+root@chou24-framework16:/# cd /tmp/bagfiles
+root@chou24-framework16:/tmp/bagfiles# rosbag record -O baggy -a
+[INFO] [1757989595.331712891]: Recording to 'baggy.bag'.
+[INFO] [1757989595.332378867]: Subscribing to /rosout_agg
+[INFO] [1757989595.333231351]: Subscribing to /rosout
+[INFO] [1757989595.333982426]: Subscribing to /turtle1/pose
+[INFO] [1757989595.334631219]: Subscribing to /turtle1/color_sensor
+[INFO] [1757989595.335187820]: Subscribing to /turtle1/cmd_vel
+^Croot@chou24-framework16:/tmp/bagfiles# 
+root@chou24-framework16:/tmp/bagfiles# 
+

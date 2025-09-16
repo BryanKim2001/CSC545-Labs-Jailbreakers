@@ -1,0 +1,14 @@
+(base) chou24@chou24-framework16:~$ docker exec -it my_ros /bin/bash
+permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.51/containers/my_ros/json": dial unix /var/run/docker.sock: connect: permission denied
+(base) chou24@chou24-framework16:~$ sudo usermod -aG docker $USER
+[sudo] password for chou24: 
+(base) chou24@chou24-framework16:~$ newgrp docker
+(base) chou24@chou24-framework16:~$ docker ps -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS                      PORTS     NAMES
+97ea9212d8fc   ros:noetic-perception   "/ros_entrypoint.sh …"   12 minutes ago   Up 11 minutes                         my_ros
+2f5a2b6f03a9   hello-world             "/hello"                 23 minutes ago   Exited (0) 23 minutes ago             gracious_roentgen
+(base) chou24@chou24-framework16:~$ docker exec -it my_ros /bin/bash
+root@chou24-framework16:/# rosrun turtlesim turtlesim_node
+QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+[INFO] [1757988819.464318641]: Starting turtlesim with node name /turtlesim
+[INFO] [1757988819.466002034]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]

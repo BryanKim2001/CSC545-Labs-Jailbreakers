@@ -1,0 +1,213 @@
+(base) chou24@chou24-framework16:~$ docker pull ros:noetic-perception
+noetic-perception: Pulling from library/ros
+13b7e930469f: Pull complete 
+0da4792f7f41: Pull complete 
+d20358ca2eb5: Pull complete 
+5dce350d6ea4: Pull complete 
+60ca0507171d: Pull complete 
+59cc10980325: Pull complete 
+6932d16c2645: Pull complete 
+342ecf093a91: Pull complete 
+6c240714a1b7: Pull complete 
+ff0451913b17: Pull complete 
+281e59625cef: Pull complete 
+Digest: sha256:32370c500818eaefb8491d7d85e9f415541b7f4bfec8afc59c4240653e7a77e4
+Status: Downloaded newer image for ros:noetic-perception
+docker.io/library/ros:noetic-perception
+(base) chou24@chou24-framework16:~$ docker images
+\REPOSITORY    TAG                 IMAGE ID       CREATED       SIZE
+hello-world   latest              1b44b5a3e06a   5 weeks ago   10.1kB
+ros           noetic-perception   f5d1e228d78f   4 years ago   3.96GB
+(base) chou24@chou24-framework16:~$ docker images | grep noetic-perception
+ros           noetic-perception   f5d1e228d78f   4 years ago   3.96GB
+(base) chou24@chou24-framework16:~$ xhost +local:
+non-network local connections being added to access control list
+(base) chou24@chou24-framework16:~$ echo $DISPLAY
+:0
+(base) chou24@chou24-framework16:~$ sudo docker run -it -v /etc/localtime:/etc/localtime:ro \
+-v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY \
+--shm-size 8g -e GDK_SCALE -e GDK_DPI_SCALE \
+--network host --ipc=host -v /media:/media \
+-v /data:/data -v /home:/home --user root \
+--name my_ros ros:noetic-perception
+root@chou24-framework16:/# exit
+(base) chou24@chou24-framework16:~$ docker ps -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS                      PORTS     NAMES
+97ea9212d8fc   ros:noetic-perception   "/ros_entrypoint.sh …"   35 seconds ago   Exited (0) 13 seconds ago             my_ros
+2f5a2b6f03a9   hello-world             "/hello"                 11 minutes ago   Exited (0) 11 minutes ago             gracious_roentgen
+(base) chou24@chou24-framework16:~$ docker start my_ros 
+my_ros
+(base) chou24@chou24-framework16:~$ docker exec -it my_ros /bin/bash
+root@chou24-framework16:/# source /opt/ros/noetic/setup.bash
+root@chou24-framework16:/# mkdir -p ~/catkin_ws/src cd ~/catkin_ws/src
+root@chou24-framework16:/# catkin_init_workspace
+Creating symlink "/CMakeLists.txt" pointing to "/opt/ros/noetic/share/catkin/cmake/toplevel.cmake"
+root@chou24-framework16:/# mkdir -p ~/catkin_ws/src
+root@chou24-framework16:/# cd ~/catkin_ws/src
+root@chou24-framework16:~/catkin_ws/src# catkin_init_workspace
+Creating symlink "/root/catkin_ws/src/CMakeLists.txt" pointing to "/opt/ros/noetic/share/catkin/cmake/toplevel.cmake"
+root@chou24-framework16:~/catkin_ws/src# ^C
+root@chou24-framework16:~/catkin_ws/src# catkin_create_pkg cs545_lab1 std_msgs rospy roscpp
+Created file cs545_lab1/package.xml
+Created file cs545_lab1/CMakeLists.txt
+Created folder cs545_lab1/include/cs545_lab1
+Created folder cs545_lab1/src
+Successfully created files in /root/catkin_ws/src/cs545_lab1. Please adjust the values in package.xml.
+root@chou24-framework16:~/catkin_ws/src# cd ~/catkin_ws
+root@chou24-framework16:~/catkin_ws# catkin_make
+Base path: /root/catkin_ws
+Source space: /root/catkin_ws/src
+Build space: /root/catkin_ws/build
+Devel space: /root/catkin_ws/devel
+Install space: /root/catkin_ws/install
+####
+#### Running command: "cmake /root/catkin_ws/src -DCATKIN_DEVEL_PREFIX=/root/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/root/catkin_ws/install -G Unix Makefiles" in "/root/catkin_ws/build"
+####
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Using CATKIN_DEVEL_PREFIX: /root/catkin_ws/devel
+-- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
+-- This workspace overlays: /opt/ros/noetic
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using Debian Python package layout
+-- Found PY_em: /usr/lib/python3/dist-packages/em.py  
+-- Using empy: /usr/lib/python3/dist-packages/em.py
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /root/catkin_ws/build/test_results
+-- Forcing gtest/gmock from source, though one was otherwise available.
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Found Threads: TRUE  
+-- Using Python nosetests: /usr/bin/nosetests3
+-- catkin 0.8.12
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - cs545_lab1
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'cs545_lab1'
+-- ==> add_subdirectory(cs545_lab1)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/catkin_ws/build
+####
+#### Running command: "make -j16 -l16" in "/root/catkin_ws/build"
+####
+root@chou24-framework16:~/catkin_ws# source devel/setup.bash
+root@chou24-framework16:~/catkin_ws# echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+root@chou24-framework16:~/catkin_ws# rospack find cs545_lab1
+/root/catkin_ws/src/cs545_lab1
+root@chou24-framework16:~/catkin_ws# rospack depends cs545_lab1
+cpp_common
+rostime
+roscpp_traits
+roscpp_serialization
+catkin
+genmsg
+genpy
+message_runtime
+gencpp
+geneus
+gennodejs
+genlisp
+message_generation
+rosbuild
+rosconsole
+std_msgs
+rosgraph_msgs
+xmlrpcpp
+roscpp
+rosgraph
+ros_environment
+rospack
+roslib
+rospy
+root@chou24-framework16:~/catkin_ws# exit
+(base) chou24@chou24-framework16:~$ docker exec -it my_ros /bin/bash
+root@chou24-framework16:/# source /opt/ros/noetic/setup.bash
+root@chou24-framework16:/# apt update
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+Get:2 http://snapshots.ros.org/noetic/final/ubuntu focal InRelease [13.8 kB]    
+Get:3 http://archive.ubuntu.com/ubuntu focal InRelease [265 kB]                 
+Get:4 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 Packages [1054 kB]
+Get:5 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [33.1 kB]
+Get:6 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [4801 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
+Get:11 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [1308 kB]
+Get:12 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [4432 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [177 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB] 
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [4998 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [4919 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1599 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [36.8 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [28.6 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [55.2 kB]
+Fetched 36.8 MB in 3s (13.5 MB/s)                         
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+15 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@chou24-framework16:/# apt install -y ros-noetic-turtlesim
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  ros-noetic-turtlesim
+0 upgraded, 1 newly installed, 0 to remove and 15 not upgraded.
+Need to get 237 kB of archives.
+After this operation, 1153 kB of additional disk space will be used.
+Get:1 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 ros-noetic-turtlesim amd64 0.10.3-1focal.20250519.230656 [237 kB]
+Fetched 237 kB in 0s (1146 kB/s)            
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package ros-noetic-turtlesim.
+(Reading database ... 87324 files and directories currently installed.)
+Preparing to unpack .../ros-noetic-turtlesim_0.10.3-1focal.20250519.230656_amd64.
+deb ...
+Unpacking ros-noetic-turtlesim (0.10.3-1focal.20250519.230656) ...
+Setting up ros-noetic-turtlesim (0.10.3-1focal.20250519.230656) ...
+root@chou24-framework16:/# roscore
+... logging to /root/.ros/log/44f9ff54-92a2-11f0-82a2-44fa6623308f/roslaunch-chou24-framework16-602.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://chou24-framework16:39529/
+ros_comm version 1.17.4
+
+
+SUMMARY
+========
+
+PARAMETERS
+ * /rosdistro: noetic
+ * /rosversion: 1.17.4
+
+NODES
+
+auto-starting new master
+process[master]: started with pid [610]
+ROS_MASTER_URI=http://chou24-framework16:11311/
+
+setting /run_id to 44f9ff54-92a2-11f0-82a2-44fa6623308f
+process[rosout-1]: started with pid [620]
+started core service [/rosout]
